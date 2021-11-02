@@ -9,11 +9,12 @@ const TodoForm = ({ cb }) => {
       style={{ margin: "1rem 0" }}
       onSubmit={(e) => {
         e.preventDefault();
+        if (!value) return;
         cb(value);
         reset();
       }}
     >
-      <Paper>
+      <Paper style={{ padding: "1rem" }}>
         <TextField {...bind} margin="normal" label="Add New Todo" fullWidth />
         <Button type="submit">Add</Button>
       </Paper>

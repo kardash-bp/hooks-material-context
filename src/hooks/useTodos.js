@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import useLocalStorage from "./useLocalStorage";
+import useLocalStorage from "./useLocalStorageState";
 
 const useTodos = (initialTodos) => {
   const [todos, setTodos] = useLocalStorage("todos", initialTodos);

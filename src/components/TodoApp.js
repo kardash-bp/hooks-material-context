@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodos from "../hooks/useTodos";
+import Navbar from "./Navbar";
 const TodoApp = () => {
   const initialState = [
     { id: 1, task: "Clean Fishtank", completed: false },
@@ -18,20 +19,8 @@ const TodoApp = () => {
     useTodos(initialState);
 
   return (
-    <Paper
-      style={{
-        padding: 0,
-        margin: 0,
-        height: "100vh",
-        backgroundColor: "#fafafa",
-      }}
-      elevation={0}
-    >
-      <AppBar color="primary" position="static" style={{ height: "64px" }}>
-        <Toolbar>
-          <Typography color="inherit">TODOS WITH HOOKS</Typography>
-        </Toolbar>
-      </AppBar>
+    <div>
+      <Navbar />
       <Grid container justifyContent="center" style={{ marginTop: "2rem" }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm cb={addTodo} />
@@ -43,7 +32,7 @@ const TodoApp = () => {
           />
         </Grid>
       </Grid>
-    </Paper>
+    </div>
   );
 };
 

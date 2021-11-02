@@ -14,7 +14,7 @@ const TodoForm = ({ cb }) => {
         reset();
       }}
     >
-      <Paper style={{ padding: "1rem" }}>
+      <Paper>
         <TextField {...bind} margin="normal" label="Add New Todo" fullWidth />
         <Button type="submit">Add</Button>
       </Paper>

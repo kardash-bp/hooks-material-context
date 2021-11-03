@@ -2,19 +2,19 @@ import TodoApp from "./components/todos/TodoApp";
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 import PageContent from "./components/PageContent";
-import ThemeContext from "./contexts/ThemeContext";
-import LanguageContext from "./contexts/LanguageContext";
+import ThemeProvider from "./contexts/ThemeProvider";
+import LanguageProvider from "./contexts/LanguageProvider";
 function App() {
   return (
-    <ThemeContext>
-      <LanguageContext>
+    <ThemeProvider>
+      <LanguageProvider>
         <PageContent>
           <Navbar />
           <Form />
           <TodoApp />;
         </PageContent>
-      </LanguageContext>
-    </ThemeContext>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

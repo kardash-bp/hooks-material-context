@@ -16,20 +16,28 @@ import {
 import { LockOutlined } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../styles/FormStyles";
+import { LangContext } from "../contexts/LanguageContext";
+const diffLang = {
+  sr: ["Prijava", "Zapamti me"],
+  en: ["Log in", "Remember Me"],
+  es: ["Acceso", "Recuérdame"],
+};
 class Form extends Component {
+  static contextType = LangContext;
   render() {
     const { classes } = this.props;
+    const { lang, changeLang } = this.context;
     return (
       <main className={classes.main}>
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlined />
           </Avatar>
-          <Typography variant="h5">Sign In</Typography>
-          <Select value="srp">
-            <MenuItem value="srp">Srpski</MenuItem>
-            <MenuItem value="eng">English</MenuItem>
-            <MenuItem value="esp">Espanol</MenuItem>
+          <Typography variant="h5">{diffLang[lang][0]}</Typography>
+          <Select value={lang} onChange={(e) => changeLang(e.target.value)}>
+            <MenuItem value="sr">Srpski</MenuItem>
+            <MenuItem value="en">English</MenuItem>
+            <MenuItem value="es">Espanol</MenuItem>
           </Select>
           <form className={classes.form}>
             <FormControl margin="normal" required fullWidth>
@@ -40,7 +48,10 @@ class Form extends Component {
               <InputLabel htmlFor="password">Password</InputLabel>
               <Input id="password" name="password" />
             </FormControl>
-            <FormControlLabel control={<Checkbox />} label="Remember Me" />
+            <FormControlLabel
+              control={<Checkbox />}
+              label={diffLang[lang][1]}
+            />
             <Button
               className={classes.submitBtn}
               variant="contained"
@@ -48,7 +59,7 @@ class Form extends Component {
               color="primary"
               fullWidth
             >
-              Sign In
+              {diffLang[lang][0]}
             </Button>
           </form>
         </Paper>

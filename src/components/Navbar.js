@@ -8,12 +8,15 @@ import SearchIcon from "@material-ui/icons/Search";
 import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "../styles/NavbarStyles";
+import { ContextTheme } from "../contexts/ThemeContext";
 class Navbar extends Component {
+  static contextType = ContextTheme;
   render() {
+    const { isDarkMode, toggleTheme } = this.context;
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar color="primary" position="static">
+        <AppBar color={isDarkMode ? "default" : "primary"} position="static">
           <Toolbar>
             <Typography className={classes.title} variant="h6" color="inherit">
               TODOS WITH HOOKS
@@ -34,7 +37,7 @@ class Navbar extends Component {
             <IconButton className={classes.menuButton} color="inherit">
               <span>󠁧󠁢󠁥󠁮en</span>
             </IconButton>
-            <Switch />
+            <Switch onChange={toggleTheme} />
           </Toolbar>
         </AppBar>
       </div>

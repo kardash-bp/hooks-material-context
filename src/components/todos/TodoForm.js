@@ -1,6 +1,6 @@
 import { Button, Paper, TextField } from "@material-ui/core";
 import React from "react";
-import useInput from "../hooks/useInput";
+import useInput from "../../hooks/useInput";
 
 const TodoForm = ({ cb }) => {
   const [value, reset, bind] = useInput("");

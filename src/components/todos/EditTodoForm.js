@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
-import useInput from "../hooks/useInput";
+import useInput from "../../hooks/useInput";
 
 const EditTodoForm = ({ todo, cb, setIsEditing }) => {
   const [value, reset, bind] = useInput(todo.task);

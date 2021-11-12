@@ -1,3 +1,4 @@
+import React, { useState, useContext } from "react";
 import {
   Checkbox,
   IconButton,
@@ -6,14 +7,15 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import React, { useState } from "react";
 import EditTodoForm from "./EditTodoForm";
+import { TodosContext } from "../../contexts/TodosContext";
 
-const TodoItem = ({ todo, removeTodo, toggleTodo, editTodo }) => {
+const TodoItem = ({ todo }) => {
   const [isEditing, setIsEditing] = useState(false);
-  console.log(isEditing);
+  const { removeTodo, toggleTodo } = useContext(TodosContext);
+  //console.log(todo);
   return isEditing ? (
-    <EditTodoForm todo={todo} cb={editTodo} setIsEditing={setIsEditing} />
+    <EditTodoForm todo={todo} setIsEditing={setIsEditing} />
   ) : (
     <>
       <Checkbox

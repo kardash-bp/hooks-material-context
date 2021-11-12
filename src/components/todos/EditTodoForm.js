@@ -1,16 +1,20 @@
+import React, { useContext } from "react";
 import { TextField } from "@material-ui/core";
-import React from "react";
+import { TodosContext } from "../../contexts/TodosContext";
 import useInput from "../../hooks/useInput";
 
-const EditTodoForm = ({ todo, cb, setIsEditing }) => {
-  const [value, reset, bind] = useInput(todo.task);
+const EditTodoForm = ({ todo, setIsEditing }) => {
+  const { editTodo } = useContext(TodosContext);
+  const [value, bind] = useInput(todo.task);
+  console.log("edit todo form render");
+
   return (
     <form
       style={{ margin: "1rem", width: "90%" }}
       onSubmit={(e) => {
         e.preventDefault();
-        cb({ ...todo, task: value });
-        reset();
+        editTodo({ ...todo, task: value });
+        setIsEditing(false);
       }}
     >
       <TextField

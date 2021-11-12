@@ -1,8 +1,10 @@
 import { List, ListItem, Paper } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
+import { TodosContext } from "../../contexts/TodosContext";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todos, removeTodo, toggleTodo, editTodo }) => {
+const TodoList = () => {
+  const { todos } = useContext(TodosContext);
   if (todos.length === 0) return null;
   return (
     <Paper>
@@ -16,12 +18,7 @@ const TodoList = ({ todos, removeTodo, toggleTodo, editTodo }) => {
             }}
             key={todo.id}
           >
-            <TodoItem
-              todo={todo}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+            <TodoItem todo={todo} />
           </ListItem>
         ))}
       </List>

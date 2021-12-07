@@ -4,25 +4,25 @@ import { TodosContext } from "../../contexts/TodosContext";
 import useInput from "../../hooks/useInput";
 
 const EditTodoForm = ({ todo, setIsEditing }) => {
-  const { editTodo } = useContext(TodosContext);
-  const [value, bind] = useInput(todo.task);
-  console.log("edit todo form render");
+const [value, reset, handleChange] = useInput(todo.task);
+  const { dispatch } = useContext(TodosContext);
 
   return (
     <form
       style={{ margin: "1rem", width: "90%" }}
       onSubmit={(e) => {
         e.preventDefault();
-        editTodo({ ...todo, task: value });
+        dispatch({ type: "EDIT", id: todo.id, newTask: value });
         setIsEditing(false);
       }}
     >
       <TextField
-        {...bind}
+        value={value}
         margin="normal"
         fullWidth
         autoFocus
         onBlur={() => setIsEditing(false)}
+        onChange={handleChange}
       />
     </form>
   );

@@ -4,8 +4,8 @@ import { TodosContext } from "../../contexts/TodosContext";
 import useInput from "../../hooks/useInput";
 
 const TodoForm = () => {
-  const [value, reset, bind] = useInput("");
-  const { addTodo } = useContext(TodosContext);
+  const [value, reset, handleChange] = useInput("");
+  const { dispatch } = useContext(TodosContext);
   console.log("todo form render");
   return (
     <form
@@ -13,12 +13,18 @@ const TodoForm = () => {
       onSubmit={(e) => {
         e.preventDefault();
         if (!value) return;
-        addTodo(value);
+        dispatch({ type: "ADD", task: value });
         reset();
       }}
     >
       <Paper>
-        <TextField {...bind} margin="normal" label="Add New Todo" fullWidth />
+        <TextField
+          value={value}
+          margin="normal"
+          label="Add New Todo"
+          fullWidth
+          onChange={handleChange}
+        />
         <Button type="submit">Add</Button>
       </Paper>
     </form>
